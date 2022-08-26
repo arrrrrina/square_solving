@@ -1,4 +1,4 @@
-#include "header.h"
+#include "usefull_functions.h"
 
 int solve_eq(const double a, const double b, const double c, double* x1, double* x2)
 {
