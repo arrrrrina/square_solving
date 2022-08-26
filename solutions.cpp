@@ -1,6 +1,6 @@
 #include "header.h"
 
-number_of_roots solve_eq(const double a, const double b, const double c, double* x1, double* x2)
+int solve_eq(const double a, const double b, const double c, double* x1, double* x2)
 {
     assert(std::isfinite(a));
     assert(std::isfinite(b));
@@ -31,6 +31,12 @@ number_of_roots solve_eq(const double a, const double b, const double c, double*
     {
         diskr = b*b - 4*a*c;
 
+        if(are_equal(diskr,0))
+        {
+            *x1 = -b/(2*a);
+            return ROOT_ONE;
+        }
+
         if(diskr > 0)
         {
             *x1 = (-b + sqrt(diskr))/(2*a);
@@ -42,12 +48,6 @@ number_of_roots solve_eq(const double a, const double b, const double c, double*
         if(diskr < 0)
         {
             return ROOT_ZERO;
-        }
-
-        if(are_equal(diskr,0))
-        {
-            *x1 = -b/(2*a);
-            return ROOT_ONE;
         }
 
         assert(x1!=x2);
@@ -69,6 +69,5 @@ bool are_equal(const double a,const double b)
     }
     return 0;
 }
-
 
 

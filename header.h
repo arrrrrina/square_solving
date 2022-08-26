@@ -19,12 +19,19 @@ enum number_of_roots
     ROOT_ERROR
 };
 
+/**
+@brief Reads new tests from file
+
+@details This function recieves new string from
+ the file and sent for testing on solving square equation function.
+
+*/
 void getting_new_tests();
 
 /**
 @brief Orginizes input
 
-@detailed This function recieves three arguments and cheks if they're double digits.
+@details This function recieves three arguments and cheks if they're double digits.
 
 @param a coefficient
 @param b coefficient
@@ -37,22 +44,38 @@ int enter(double *a, double *b, double *c);
 /**
 @brief Solves square equations.
 
-@detailed This function recieves three coefficients of square equation,
+@details This function recieves three coefficients of square equation,
 calculates roots and returns number of roots.
 
-@param a a - coefficient
-@param b b - coefficient
-@param c c - coefficient
-@param *x1 *x1- pointer of 1st root
-@param *x2 *x2- pointer of 2st root
+@param a   coefficient
+@param b   coefficient
+@param c   coefficient
+@param *x1 pointer of 1st root
+@param *x2 pointer of 2st root
 
 @return number_of_roots
 */
-number_of_roots solve_eq(const double a, const double b, const double c, double* x1, double* x2);
+int solve_eq(const double a, const double b, const double c, double* x1, double* x2);
 
+/**
+@brief Compare double digits
+
+@details This function finds difference between 2 double digits and defines is it suitable.
+
+@param a 1st digit fir comparing
+@param b 2nd digit for comparing
+
+*/
 bool are_equal(double a, double b);
 
 /**
+@brief Outputs results of calculating roots
+
+@param x1 1st root
+@param x2 2nd root
+@param rootnumb number of roots
+
+@return 1 if digits are equal
 @brief Orginizes output
 
 @detailed
@@ -62,8 +85,23 @@ bool are_equal(double a, double b);
 
 @return true if a == b(for float and double)
 */
-void output(double x1, double x2, number_of_roots rootnumb);
+void output(double x1, double x2, int rootnumb);
 
+/**
+@brief checks 1 string of test data with solving square equation function
+
+@param a coefficient
+@param b coefficient
+@param c coefficient
+@param root_numb_right right number of roots from file
+@param x1_right right 1st root
+@param x2_right right 2nd root
+
+@return 1(accepted) or 0(failed)
+
+*/
 bool Test(const double a, const double b, const double c,
-          const double root_numb_right, const double x1_right,
+          int root_numb_right, const double x1_right,
           const double x2_right);
+
+

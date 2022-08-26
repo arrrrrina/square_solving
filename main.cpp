@@ -10,9 +10,8 @@ int main()
     {
         double a=NAN,b=NAN,c=NAN;
         double x1 = RANDOM_1,x2 = RANDOM_2;
-        printf("%lg\n", x1);
 
-        number_of_roots rootnumb=ROOT_ERROR;
+        int rootnumb=ROOT_ERROR;
 
         bool ok_input = enter(&a, &b, &c);
 
