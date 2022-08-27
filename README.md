@@ -9,4 +9,8 @@ I'm really happy to present you my project. :relaxed:
   Don't worry. Just enter 3 coefficients of your square equation and it will be solved.
 # Using the programm
   To start solving equations you need to open file a.exe      
-  Other way, you can open cmd and use **makefile** to build a.exe
+  Other way, you can open cmd and use **makefile** to build **a.exe**
+ # Testing 
+  To start testing you can open file **test.exe**  
+  Other way, you can start testing with command make **test.exe**
+  
