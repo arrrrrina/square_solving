@@ -1,17 +1,7 @@
-#include "usefull_functions.h"
 #include <locale.h>
-
-int stream_left();
-
-int stream_left()
-{
-    int character = 0;
-    int char_numb = 0;
-    while((character = getchar()) != '\n')
-        char_numb++;
-
-    return char_numb;
-}
+#include "enum_constants.h"
+#include "solutions.h"
+#include "input_output.h"
 
 int main()
 {
@@ -24,25 +14,39 @@ int main()
     {
         double a = NAN,b = NAN,c = NAN;
         double x1 = FIRST_VALUE_X1,x2 = FIRST_VALUE_X2;
-        int indicator = 0;
+        int indicator_in = 0;
+        int indicator_out = 0;
         int buf = 0;
+        int bad_input = 0;
 
-        indicator = getchar();
-        buf = getchar();
+        while((buf = getchar()) != '\n')
+            {
+                if ((buf != '*') && (buf != '#') && (buf != ' '))
+                    bad_input++;
+                if( buf == '*')
+                    indicator_out++;
+                if( buf == '#')
+                    indicator_in++;
+            }
+
+       //printf("%d", bad_input);
+
        // printf("indicator: <%c> (%d)\n" "buf: <%c> (%d)\n", indicator, indicator, buf, buf);
 
-        if(buf != '\n')
+        if((bad_input != 0) or (indicator_in != 1 && indicator_out != 1))
         {
             printf("Команда не распознана. Введи один символ.\n");
+
+            continue;
             //clear_stream();
         }
-        else if(indicator == '#')
+        if(indicator_in == 1 && bad_input == 0 )
         {
             int rootnumb = ROOT_ERROR;
             //clear_stream();
             bool ok_input = enter(&a, &b, &c);
 
-            if(ok_input != 0 and indicator == '#')
+            if(ok_input != 0)
             {
                 rootnumb = solve_eq(a, b, c, &x1, &x2);
                 output(x1, x2, rootnumb);
@@ -52,12 +56,12 @@ int main()
                 continue;
             }
         }
-        else if (indicator == '*')
+        else if (indicator_out == 1 && bad_input == 0)
             {
                 return 0;
             }
-        else
-            printf("Команда не распознана. Введите * + enter или # + enter.\n");
+        /*else
+            printf("Команда не распознана. Введите * + enter или # + enter.\n");*/
     }
     return 0;
  }

@@ -1,4 +1,5 @@
-#include "usefull_functions.h"
+#include "solutions.h"
+#include "enum_constants.h"
 
 int solve_eq(const double a, const double b, const double c, double* x1, double* x2)
 {
@@ -69,5 +70,6 @@ bool are_equal(const double a,const double b)
     }
     return 0;
 }
+
 
 

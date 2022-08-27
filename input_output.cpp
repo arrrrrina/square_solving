@@ -1,9 +1,11 @@
-#include "usefull_functions.h"
+#include "input_output.h"
+#include "enum_constants.h"
 
 int enter(double *a, double *b, double *c)
 {
-    printf("Введи через пробел коэффиценты уравнения a,b и c.\n(Не вводи лишних символов, пробел после последнего числа ставить не требуется)\n");
+    printf("Введи через пробел коэффиценты уравнения a,b и c.\n");
     int is_digits = scanf("%lg%lg%lg", a, b, c);
+
     if (is_digits != 3)
     {
         printf("Неправильно введены данные. Введите 3 числа.\n");
@@ -11,13 +13,17 @@ int enter(double *a, double *b, double *c)
 
         return 0;
     }
+
     int left_symb = 0;
-    int left_numb = 0;
+    int left_numb_symb = 0;
     while((left_symb = getchar()) != '\n')
-        left_numb++;
-    if(left_numb != 0)
+        {
+            if (left_symb != ' ')
+                left_numb_symb++;
+        }
+    if(left_numb_symb != 0)
     {
-        printf("Неправильно введены данные. Введите 3 числа. Пробел после последнего числа ставить не требуется. \n");
+        printf("Неправильно введены данные. Введите 3 числа без лишних символов.\n");
         printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");
         return 0;
     }

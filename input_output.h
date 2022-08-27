@@ -29,3 +29,10 @@ int enter(double *a, double *b, double *c);
 @return true if a == b(for float and double)
 */
 void output(double x1, double x2, int rootnumb);
+
+/**
+@brief Clears the stream.
+
+@details For right input working this function clears the stream.
+*/
+void clear_stream();
