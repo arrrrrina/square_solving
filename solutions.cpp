@@ -46,6 +46,7 @@ int solve_eq(const double a, const double b, const double c, double* x1, double*
             assert(std::isfinite(*x2));
             return ROOT_TWO;
         }
+
         if(diskr < 0)
         {
             return ROOT_ZERO;
@@ -68,6 +69,7 @@ bool are_equal(const double a,const double b)
     {
         return 1;
     }
+
     return 0;
 }
 

@@ -1,4 +1,5 @@
 #include "enum_constants.h"
+#include "test.h"
 
 int main()
 {

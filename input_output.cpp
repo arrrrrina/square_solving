@@ -1,5 +1,6 @@
 #include "input_output.h"
 #include "enum_constants.h"
+#include <ctype.h>
 
 int enter(double *a, double *b, double *c)
 {
@@ -16,17 +17,21 @@ int enter(double *a, double *b, double *c)
 
     int left_symb = 0;
     int left_numb_symb = 0;
+
     while((left_symb = getchar()) != '\n')
         {
-            if (left_symb != ' ')
+            if (!isspace(left_symb))
                 left_numb_symb++;
         }
+
     if(left_numb_symb != 0)
     {
         printf("Неправильно введены данные. Введите 3 числа без лишних символов.\n");
         printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");
+
         return 0;
     }
+
     assert(std::isfinite(*a));
     assert(std::isfinite(*b));
     assert(std::isfinite(*c));
@@ -36,13 +41,6 @@ int enter(double *a, double *b, double *c)
     return 1;
 }
 
-void clear_stream()
-{
-    int stream = 0;
-    while ((stream = getchar()) != '\n')
-        ;
-}
-
 void output(double x1, double x2, int rootnumb)
 {
     switch(rootnumb)
@@ -50,22 +48,27 @@ void output(double x1, double x2, int rootnumb)
         case ROOT_ZERO:
             printf("Решений нет.\n");
             printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");            break;
+
         case ROOT_ONE:
             assert(std::isfinite(x1));
             printf("Уравнение имеет 1 решение: х = %.5lg\n", x1);
             printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");
             break;
+
         case ROOT_TWO:
             assert(std::isfinite(x1));
             assert(std::isfinite(x2));
             printf("Уравнение имеет 2 решения: х1 = %.5lg, х2 = %.5lg\n", x1, x2);
             printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");
             break;
+
         case ROOT_INF:
             printf("Уравнение имеет бесконечно много решений.\n");
             printf("Чтобы продолжить, # + enter, чтобы закончить, нажми * + enter.\n");
             break;
+
         case ROOT_ERROR:
+
         default:
             printf("Ошибка\n");
             assert(false);

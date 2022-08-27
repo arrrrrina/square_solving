@@ -1,4 +1,5 @@
 #include <locale.h>
+#include <ctype.h>
 #include "enum_constants.h"
 #include "solutions.h"
 #include "input_output.h"
@@ -14,6 +15,7 @@ int main()
     {
         double a = NAN,b = NAN,c = NAN;
         double x1 = FIRST_VALUE_X1,x2 = FIRST_VALUE_X2;
+
         int indicator_in = 0;
         int indicator_out = 0;
         int buf = 0;
@@ -21,7 +23,7 @@ int main()
 
         while((buf = getchar()) != '\n')
             {
-                if ((buf != '*') && (buf != '#') && (buf != ' '))
+                if ((buf != '*') && (buf != '#') && !(isspace(buf)))
                     bad_input++;
                 if( buf == '*')
                     indicator_out++;
@@ -29,21 +31,17 @@ int main()
                     indicator_in++;
             }
 
-       //printf("%d", bad_input);
-
-       // printf("indicator: <%c> (%d)\n" "buf: <%c> (%d)\n", indicator, indicator, buf, buf);
-
         if((bad_input != 0) or (indicator_in != 1 && indicator_out != 1))
         {
             printf("Команда не распознана. Введи один символ.\n");
 
             continue;
-            //clear_stream();
         }
+
         if(indicator_in == 1 && bad_input == 0 )
         {
             int rootnumb = ROOT_ERROR;
-            //clear_stream();
+
             bool ok_input = enter(&a, &b, &c);
 
             if(ok_input != 0)
@@ -60,8 +58,7 @@ int main()
             {
                 return 0;
             }
-        /*else
-            printf("Команда не распознана. Введите * + enter или # + enter.\n");*/
     }
+
     return 0;
  }
